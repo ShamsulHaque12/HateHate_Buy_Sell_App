@@ -66,13 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _handleForgotPassword() {
-    final isBengali = AppLanguage.current;
-    Helpers.showSnackBar(
-      context,
-      isBengali
-          ? 'পাসওয়ার্ড রিসেট লিংক আপনার ইমেইলে পাঠানো হবে'
-          : 'Password reset link will be sent to your email',
-    );
+    context.push(AppRouter.forgotPassword);
   }
 
   void _handleRegister() {

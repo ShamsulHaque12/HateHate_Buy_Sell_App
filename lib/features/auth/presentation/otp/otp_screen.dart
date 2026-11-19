@@ -9,10 +9,12 @@ import 'widgets/otp_pin_input.dart';
 
 class OtpScreen extends StatefulWidget {
   final String target;
+  final bool isResetPassword;
 
   const OtpScreen({
     super.key,
     this.target = 'sujon.ahmed@gmail.com',
+    this.isResetPassword = false,
   });
 
   @override
@@ -77,15 +79,29 @@ class _OtpScreenState extends State<OtpScreen> {
       _isLoading = false;
     });
 
-    Helpers.showSnackBar(
-      context,
-      isBengali
-          ? 'অভিনন্দন! আপনার অ্যাকাউন্ট সফলভাবে ভেরিফাইড হয়েছে।'
-          : 'Congratulations! Your account is verified.',
-    );
-
-    // Navigate to Home
-    context.go(AppRouter.home);
+    if (widget.isResetPassword) {
+      Helpers.showSnackBar(
+        context,
+        isBengali
+            ? 'ওটিপি সফল! নতুন পাসওয়ার্ড সেট করুন।'
+            : 'OTP verified! Set your new password.',
+      );
+      // Navigate to Reset Password Screen
+      context.pushReplacement(AppRouter.resetPassword, extra: {
+        'email': widget.target,
+      });
+    } else {
+      Helpers.showSnackBar(
+        context,
+        isBengali
+            ? 'অভিনন্দন! আপনার ওটিপি সফলভাবে যাচাই হয়েছে।'
+            : 'Congratulations! OTP verified successfully.',
+      );
+      // Navigate to Profile Setup / Account Registration
+      context.pushReplacement(AppRouter.profileSetup, extra: {
+        'email': widget.target,
+      });
+    }
   }
 
   void _handleResend() {
@@ -118,7 +134,10 @@ class _OtpScreenState extends State<OtpScreen> {
           ),
           body: SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 8.0,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -133,7 +152,9 @@ class _OtpScreenState extends State<OtpScreen> {
                       borderRadius: BorderRadius.circular(22),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.primaryContainer.withValues(alpha: 0.15),
+                          color: AppColors.primaryContainer.withValues(
+                            alpha: 0.15,
+                          ),
                           blurRadius: 16,
                           offset: const Offset(0, 4),
                         ),
@@ -179,7 +200,10 @@ class _OtpScreenState extends State<OtpScreen> {
 
                   // Destination Target Chip
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 5,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.surfaceContainerLow,
                       borderRadius: BorderRadius.circular(20),
@@ -230,7 +254,9 @@ class _OtpScreenState extends State<OtpScreen> {
                         child: Text(
                           _secondsRemaining > 0
                               ? '${isBengali ? 'পুনরায় পাঠান' : 'Resend in'} (00:${_secondsRemaining.toString().padLeft(2, '0')})'
-                              : (isBengali ? 'পুনরায় কোড পাঠান' : 'Resend Code'),
+                              : (isBengali
+                                    ? 'পুনরায় কোড পাঠান'
+                                    : 'Resend Code'),
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w700,
@@ -254,8 +280,8 @@ class _OtpScreenState extends State<OtpScreen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primaryContainer,
                         foregroundColor: Colors.white,
-                        disabledBackgroundColor:
-                            AppColors.primaryContainer.withValues(alpha: 0.6),
+                        disabledBackgroundColor: AppColors.primaryContainer
+                            .withValues(alpha: 0.6),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -267,8 +293,9 @@ class _OtpScreenState extends State<OtpScreen> {
                               height: 22,
                               child: CircularProgressIndicator(
                                 strokeWidth: 2.2,
-                                valueColor:
-                                    AlwaysStoppedAnimation<Color>(Colors.white),
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.white,
+                                ),
                               ),
                             )
                           : Row(
@@ -296,29 +323,6 @@ class _OtpScreenState extends State<OtpScreen> {
                   ),
 
                   const SizedBox(height: 24),
-
-                  // Trust footnote
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.lock_rounded,
-                        size: 14,
-                        color: AppColors.primaryContainer,
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        isBengali
-                            ? 'নিরাপদ ২৫৬-বিট এনক্রিপশনযুক্ত ভেরিফিকেশন'
-                            : 'Secure 256-bit encrypted verification',
-                        style: const TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.primaryContainer,
-                        ),
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ),
