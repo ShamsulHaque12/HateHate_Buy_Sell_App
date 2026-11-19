@@ -34,7 +34,9 @@ class PasswordStrengthBar extends StatelessWidget {
               child: Container(
                 height: 5,
                 decoration: BoxDecoration(
-                  color: score >= 1 ? AppColors.primaryContainer : AppColors.surfaceContainerHigh,
+                  color: score >= 1
+                      ? AppColors.primaryContainer
+                      : AppColors.surfaceContainerHigh,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
@@ -44,7 +46,9 @@ class PasswordStrengthBar extends StatelessWidget {
               child: Container(
                 height: 5,
                 decoration: BoxDecoration(
-                  color: score >= 2 ? AppColors.primaryContainer : AppColors.surfaceContainerHigh,
+                  color: score >= 2
+                      ? AppColors.primaryContainer
+                      : AppColors.surfaceContainerHigh,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
@@ -54,7 +58,9 @@ class PasswordStrengthBar extends StatelessWidget {
               child: Container(
                 height: 5,
                 decoration: BoxDecoration(
-                  color: score >= 3 ? AppColors.primaryContainer : AppColors.surfaceContainerHigh,
+                  color: score >= 3
+                      ? AppColors.primaryContainer
+                      : AppColors.surfaceContainerHigh,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
@@ -73,7 +79,9 @@ class PasswordStrengthBar extends StatelessWidget {
                 Icon(
                   isStrong ? Icons.verified : Icons.shield_outlined,
                   size: 13,
-                  color: isStrong ? AppColors.primaryContainer : AppColors.outline,
+                  color: isStrong
+                      ? AppColors.primaryContainer
+                      : AppColors.outline,
                 ),
                 const SizedBox(width: 4),
                 Text(
@@ -83,7 +91,9 @@ class PasswordStrengthBar extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w600,
-                    color: isStrong ? AppColors.primaryContainer : AppColors.outline,
+                    color: isStrong
+                        ? AppColors.primaryContainer
+                        : AppColors.outline,
                   ),
                 ),
               ],
