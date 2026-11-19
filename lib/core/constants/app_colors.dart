@@ -13,6 +13,16 @@ class AppColors {
   // Secondary
   static const Color secondary = Color(0xFF4E45D5);
   static const Color secondaryContainer = Color(0xFF6860EF);
+  static const Color secondaryFixed = Color(0xFFE3DFFF);
+  static const Color onSecondaryFixed = Color(0xFF100069);
+  static const Color onSecondaryFixedVariant = Color(0xFF372ABF);
+
+  // Tertiary
+  static const Color tertiary = Color(0xFF845300);
+  static const Color tertiaryContainer = Color(0xFFA66900);
+  static const Color tertiaryFixed = Color(0xFFFFDDB8);
+  static const Color onTertiaryFixed = Color(0xFF2A1700);
+  static const Color onTertiaryFixedVariant = Color(0xFF653E00);
 
   // Background & Surface
   static const Color background = Color(0xFFF9F9FF);

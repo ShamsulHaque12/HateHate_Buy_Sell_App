@@ -10,7 +10,7 @@ import '../../features/auth/presentation/signup/signup_screen.dart';
 import '../../features/category/presentation/screens/category_screen.dart';
 import '../../features/chat/presentation/screens/chat_screen.dart';
 import '../../features/favorites/presentation/screens/favorites_screen.dart';
-import '../../features/home/presentation/screens/home_screen.dart';
+import '../../features/navigation/presentation/screens/main_navigation_screen.dart';
 import '../../features/notification/presentation/screens/notification_screen.dart';
 import '../../features/profile/presentation/screens/profile_screen.dart';
 import '../../features/report/presentation/screens/report_screen.dart';
@@ -113,7 +113,7 @@ class AppRouter {
       GoRoute(
         path: home,
         name: 'home',
-        builder: (context, state) => const HomeScreen(),
+        builder: (context, state) => const MainNavigationScreen(),
       ),
       GoRoute(
         path: category,
